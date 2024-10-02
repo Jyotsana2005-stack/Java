@@ -1,0 +1,158 @@
+Sorting Algorithms
+
+1. Bubble Sort
+
+void bubbleSort(int[] arr) {
+    int n = arr.length;
+    for (int i = 0; i < n-1; i++) {
+        for (int j = 0; j < n-i-1; j++) {
+            if (arr[j] > arr[j+1]) {
+                // Swap
+                int temp = arr[j];
+                arr[j] = arr[j+1];
+                arr[j+1] = temp;
+            }
+        }
+    }
+}
+
+
+1. Selection Sort
+void selectionSort(int[] arr) {
+    int n = arr.length;
+    for (int i = 0; i < n-1; i++) {
+        int minIndex = i;
+        for (int j = i+1; j < n; j++) {
+            if (arr[j] < arr[minIndex]) {
+                minIndex = j;
+            }
+        }
+        // Swap
+        int temp = arr[i];
+        arr[i] = arr[minIndex];
+        arr[minIndex] = temp;
+    }
+}
+
+
+1. Insertion Sort
+
+void insertionSort(int[] arr) {
+    int n = arr.length;
+    for (int i = 1; i < n; i++) {
+        int key = arr[i];
+        int j = i-1;
+        while (j >= 0 && arr[j] > key) {
+            arr[j+1] = arr[j];
+            j--;
+        }
+}
+}
+
+
+1. Merge Sort
+
+void mergeSort(int[] arr) {
+    mergeSort(arr, 0, arr.length-1);
+}
+
+void mergeSort(int[] arr, int l, int r) {
+    if (l < r) {
+        int m = l + (r-l)/2;
+        mergeSort(arr, l, m);
+        mergeSort(arr, m+1, r);
+        merge(arr, l, m, r);
+    }
+}
+
+void merge(int[] arr, int l, int m, int r) {
+    int[] left = Arrays.copyOfRange(arr, l, m+1);
+    int[] right = Arrays.copyOfRange(arr, m+1, r+1);
+    int i = 0, j = 0, k = l;
+    while (i < left.length && j < right.length) {
+        if (left[i] <= right[j]) {
+            arr[k++] = left[i++];
+} else {
+            arr[k++] = right[j++];
+        }
+    }
+    while (i < left.length) {
+        arr[k++] = left[i++];
+    }
+    while (j < right.length) {
+        arr[k++] = right[j++];
+    }
+}
+
+
+1. Quick Sort
+
+void quickSort(int[] arr) {
+    quickSort(arr, 0, arr.length-1);
+}
+
+void quickSort(int[] arr, int l, int r) {
+    if (l < r) {
+        int pivot = partition(arr, l, r);
+        quickSort(arr, l, pivot-1);
+        quickSort(arr, pivot+1, r);
+    }
+}
+
+int partition(int[] arr, int l, int r) {
+int pivot = arr[r];
+    int i = l-1;
+    for (int j = l; j < r; j++) {
+        if (arr[j] < pivot) {
+            i++;
+            // Swap
+            int temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+        }
+    }
+    // Swap
+    int temp = arr[i+1];
+    arr[i+1] = arr[r];
+    arr[r] = temp;
+    return i+1;
+}
+
+
+Searching Algorithms
+
+1. Linear Search
+
+int linearSearch(int[] arr, int target) {
+    for (int i = 0; i < arr.length; i++) {
+        if (arr[i] == target) {
+            return i;
+        }
+ }
+    return -1; // Not found
+}
+
+
+1. Binary Search
+
+int binarySearch(int[] arr, int target) {
+    int l = 0, r = arr.length-1;
+    while (l <= r) {
+        int m = l + (r-l)/2;
+        if (arr[m] == target) {
+            return m;
+        } else if (arr[m] < target) {
+            l = m+1;
+        } else {
+            r = m-1;
+        }
+    }
+    return -1; // Not found
+}
+
+
+Graph Algorithms
+
+1. Breadth-First Search (BFS)
+
+void bfs(int[][] graph, int
